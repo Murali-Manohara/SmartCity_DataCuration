@@ -1,6 +1,6 @@
 # SmartFit: The Member Intelligence Challenge
 
-## Data Curation Architecture
+## Data Curation Architecture.
 
 ## 1. Introduction
 
