@@ -60,7 +60,7 @@ Tracks lineage, audit history, quality, access, and corrections.
 ## 4. Architecture Flow and Key Terminology
 
 ![SmartFit Data Curation
-Architecture](image.png)
+Architecture](SmartFit_Architecture.png)
 
 ### End-to-end flow
 
