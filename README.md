@@ -1,9 +1,5 @@
 # SmartFit: The Member Intelligence Challenge
 
-## Data Curation Architecture
-
-**Prepared by:** Murali Manohara and Ullas\
-**Focus:** Data Curation Foundations
 
 ## 1. Introduction
 
