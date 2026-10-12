@@ -186,11 +186,7 @@ Architecture](smartfit_data_curation_architecture.png)
   data it is not authorized to see    and expose only the fields and
                                       products required for that role.
 
-  A dashboard number cannot be        Trace the metric through the
-  explained                           semantic definition, curated model,
-                                      transformation history, and source
-                                      lineage; investigate the relevant
-                                      audit and quality records.
+ 
   -----------------------------------------------------------------------
 
 ## 6. Conclusion
