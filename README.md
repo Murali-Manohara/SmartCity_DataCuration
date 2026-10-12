@@ -137,54 +137,17 @@ Architecture](image.png)
 
 ## 5. Edge Cases and Resolutions
 
-  -----------------------------------------------------------------------
-  Edge case                           Resolution in the architecture
-  ----------------------------------- -----------------------------------
-  A source adds, removes, or changes  Detect it through schema/contract
-  a field                             checks. Quarantine incompatible
-                                      records until a schema update or
-                                      approved mapping is available.
+  - **A source adds, removes, or changes a field:** Detect the change through schema/contract checks. Quarantine incompatible records until a schema update or approved mapping is available.
+- **A required field is missing or a value is invalid:** Route the record to data-quality quarantine. Correct it or apply an approved rule, then validate it again.
+- **Two records look similar but may belong to different members:** Use identity-confidence thresholds and send ambiguous matches to manual review. Avoid automatic merging when evidence is weak.
+- **One member changes their name or contact details:** Preserve stable source identifiers and change history. Update the resolved identity using approved matching rules.
+- **A coach corrects a previously completed workout:** Preserve the original event/history, record the correction and its reason, then refresh the curated workout record and downstream views.
+- **The definition of “active member” changes:** Version the centrally approved metric definition and communicate its effective date so reports remain interpretable over time.
+- **The same event is ingested more than once:** Use source event identifiers or other idempotency keys, where available, to detect duplicate deliveries before they create duplicate curated records.
+- **A source or ingestion job is temporarily unavailable:** Use retry handling for transient failures, monitor persistent failures, and retain enough metadata to resume safely.
+- **A downstream team tries to access data it is not authorized to see:** Apply role-based access controls and expose only the fields and data products required for that role.
+- **A dashboard number cannot be explained:** Trace the metric through its semantic definition, curated model, transformation history, and source lineage. Investigate the relevant audit and quality records.
 
-  A required field is missing or a    Route the record to data-quality
-  value is invalid                    quarantine. Correct it or apply an
-                                      approved rule, then validate it
-                                      again.
-
-  Two records look similar but may    Use identity confidence thresholds
-  belong to different members         and send ambiguous matches to
-                                      manual review. Avoid automatic
-                                      merging when evidence is weak.
-
-  One member changes their name or    Preserve stable source identifiers
-  contact details                     and change history; update the
-                                      resolved identity using approved
-                                      matching rules.
-
-  A coach corrects a previously       Preserve the original
-  completed workout                   event/history, record the
-                                      correction and reason, then refresh
-                                      the curated workout record and
-                                      downstream views.
-
-  The definition of "active member"   Version the centrally approved
-  changes                             metric definition and communicate
-                                      the effective date so reports
-                                      remain interpretable over time.
-
-  The same event is ingested more     Use source event identifiers or
-  than once                           other idempotency keys where
-                                      available to detect duplicate
-                                      deliveries before they create
-                                      duplicate curated records.
-
-  A source or ingestion job is        Use retry handling for transient
-  temporarily unavailable             failures, monitor persistent
-                                      failures, and retain enough
-                                      metadata to resume safely.
-
-  A downstream team tries to access   Apply role-based access controls
-  data it is not authorized to see    and expose only the fields and
-                                      products required for that role.
 
  
   -----------------------------------------------------------------------
